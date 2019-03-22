@@ -79,5 +79,5 @@
     <criver>10</criver>
   </creep>
   <!-- Output folder path -->
-  <outfolder>outputs_tutorial10</outfolder>
+  <outfolder>outputs_tutorial10_blands</outfolder>
 </badlands>

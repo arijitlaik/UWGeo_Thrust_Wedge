@@ -20,7 +20,7 @@ import glucifer
 u = GEO.UnitRegistry
 
 velocity = 1 * u.centimeter / u.year
-model_length = 100.0 * u.kilometer
+model_length = 100.0e3 * u.meter
 bodyforce = 2700.0 * u.kilogram / u.metre ** 3 * 9.81 * u.meter / u.second ** 2
 
 KL = model_length
@@ -32,7 +32,7 @@ GEO.scaling["[time]"] = Kt
 GEO.scaling["[mass]"] = KM
 
 Model = GEO.Model(
-    elementRes=(512, 256),
+    elementRes=(128, 64),
     minCoord=(0.0 * u.kilometer, -7 * u.kilometer),
     maxCoord=(128.0 * u.kilometer, 9.0 * u.kilometer),
     gravity=(0.0, -9.81 * u.meter / u.second ** 2),
@@ -181,8 +181,8 @@ Fig.show()
 # %%
 Model.solver.set_inner_method("mumps")
 Model.solver.set_penalty(1e6)
-GEO.rcParams["nonlinear.tolerance"] = 1e-3
-GEO.rcParams["initial.nonlinear.tolerance"] = 1e-3
+GEO.rcParams["nonlinear.tolerance"] = 1e-2
+GEO.rcParams["initial.nonlinear.tolerance"] = 1e-2
 # %%
 Model.init_model()
 # %%
@@ -198,8 +198,8 @@ Model.surfaceProcesses = GEO.surfaceProcesses.Badlands(
     airIndex=[air.index],
     sedimentIndex=sediment.index,
     XML="ressources/badlandsT10.xml",
-    resolution=2.0 * u.kilometer,
-    checkpoint_interval=0.01 * u.megayears,
+    resolution=500.0 * u.meter,
+    checkpoint_interval=0.1 * u.megayears,
 )
 # %%
 
@@ -212,7 +212,7 @@ def post_solve_hook():
 
 Model.postSolveHook = post_solve_hook
 # %%
-Model.run_for(10 * u.megayears, checkpoint_interval=0.1 * u.megayear, restartStep=None)
+Model.run_for(10 * u.megayears, checkpoint_interval=0.1e6 * u.year, restartStep=None)
 # %%
 
 # %%
