@@ -178,8 +178,8 @@ Fig.show()
 # %%
 Model.solver.set_inner_method("mumps")
 Model.solver.set_penalty(1e6)
-GEO.rcParams["nonlinear.tolerance"] = 1e-3
-GEO.rcParams["initial.nonlinear.tolerance"] = 1e-5
+GEO.rcParams["nonlinear.tolerance"] = 5e-3
+GEO.rcParams["initial.nonlinear.tolerance"] = 1e-4
 # %%
 Model.init_model()
 # %%
