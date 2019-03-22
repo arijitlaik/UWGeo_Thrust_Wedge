@@ -32,7 +32,7 @@ GEO.scaling["[time]"] = Kt
 GEO.scaling["[mass]"] = KM
 
 Model = GEO.Model(
-    elementRes=(1024, 128),
+    elementRes=(1024, 256),
     minCoord=(0.0 * u.kilometer, -7 * u.kilometer),
     maxCoord=(128.0 * u.kilometer, 9.0 * u.kilometer),
     gravity=(0.0, -9.81 * u.meter / u.second ** 2),
@@ -198,7 +198,7 @@ Model.surfaceProcesses = GEO.surfaceProcesses.Badlands(
     airIndex=[air.index],
     sedimentIndex=sediment.index,
     XML="ressources/badlandsT10.xml",
-    resolution=75.0 * u.meter,
+    resolution=100.0 * u.meter,
     checkpoint_interval=0.01 * u.megayears,
 )
 # %%
