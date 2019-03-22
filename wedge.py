@@ -113,6 +113,8 @@ for material in plastic_pile:
 
 frictionalBasal.viscosity = 1e23 * u.pascal * u.second
 rigidBase.viscosity = 1e23 * u.pascal * u.second
+sediment.viscosity = 1e22 * u.pascal * u.second
+
 # %% markdown
 # ## Plasticity
 # %%
@@ -124,6 +126,7 @@ plastic_Law = GEO.DruckerPrager(
     epsilon1=0.01,
     epsilon2=0.06,
 )
+
 sediment.plasticity = GEO.DruckerPrager(
     cohesion=10.0 * u.megapascal,
     cohesionAfterSoftening=4.0 * u.megapascal,
@@ -178,8 +181,8 @@ Fig.show()
 # %%
 Model.solver.set_inner_method("mumps")
 Model.solver.set_penalty(1e6)
-GEO.rcParams["nonlinear.tolerance"] = 5e-3
-GEO.rcParams["initial.nonlinear.tolerance"] = 1e-4
+GEO.rcParams["nonlinear.tolerance"] = 1e-3
+GEO.rcParams["initial.nonlinear.tolerance"] = 1e-3
 # %%
 Model.init_model()
 # %%
