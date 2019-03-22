@@ -41,7 +41,7 @@
       <!-- Rain end time [a] -->
       <rend>300000000.</rend>
       <!-- Precipitation value [m/a] - (optional) -->
-      <rval>0.</rval>
+      <rval>1.</rval>
     </rain>
   </precipitation>
   <!-- Stream power law parameters:
@@ -79,5 +79,5 @@
     <criver>10</criver>
   </creep>
   <!-- Output folder path -->
-  <outfolder>outputs_tutorial10_blands</outfolder>
+  <outfolder>outputs_tutorial10_blands_250</outfolder>
 </badlands>
