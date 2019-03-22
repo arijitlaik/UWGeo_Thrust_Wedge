@@ -4,6 +4,7 @@
 *.gldb
 *.ipynb_che*
 *.h5
+*.hdf5
 *.png
 *.log
 .DS_Store
