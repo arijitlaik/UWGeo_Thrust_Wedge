@@ -25,7 +25,7 @@
     <!-- Simulation start time [a] -->
     <start>0.</start>
     <!-- Simulation end time [a] -->
-    <end>200000000.</end>
+    <end>2000000000.</end>
     <!-- Display interval [a] -->
     <!-- This will be overridden by the linkage, so it doesn't matter -->
     <display>1000000.</display>
@@ -39,7 +39,7 @@
       <!-- Rain start time [a] -->
       <rstart>0.</rstart>
       <!-- Rain end time [a] -->
-      <rend>3000000.</rend>
+      <rend>300000000.</rend>
       <!-- Precipitation value [m/a] - (optional) -->
       <rval>0.</rval>
     </rain>
@@ -50,6 +50,9 @@
          to be equal to the local carrying capacity, which is itself a function of
          boundary shear stress. -->
   <sp_law>
+    <!-- Make the distinction between purely erosive models (0) and erosion /
+            deposition ones (1). Default value is 1 -->
+    <dep>1</dep>
     <!-- Values of m and n indicate how the incision rate scales
              with bed shear stress for constant value of sediment flux
              and sediment transport capacity.
@@ -57,17 +60,14 @@
              (m/n) is considered to be close to 0.5 -->
     <m>0.5</m>
     <n>1.0</n>
+
     <!-- The erodibility coefficient is scale-dependent and its value depend
               on lithology and mean precipitation rate, channel width, flood
               frequency, channel hydraulics. -->
-    <erodibility>8.e-6</erodibility>
+    <erodibility>5.e-6</erodibility>
     <diffnb>10</diffnb>
     <diffprop>0.05</diffprop>
   </sp_law>
-  <strata>
-    <stratdx>5000.</stratdx>
-    <laytime>10000.</laytime>
-  </strata>
   <!-- Linear slope diffusion parameters:
          Parameterisation of the sediment transport includes the simple creep transport
          law which states that transport rate depends linearly on topographic gradient. -->

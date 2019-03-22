@@ -13,8 +13,7 @@ echo "********** XXXXXXXX **********"
 # ls -l
 export IMAGE_STORE='/home/alaik/singularityImages'
 export UW_ENABLE_TIMING='1'
-export IMAGE_NAME='uwgeodynamics-badlands-dev'
-echo 'UW_VERSION: '$IMAGE_VERSION
+export IMAGE_NAME='uwgeodynamics-badlands'
 
 
 echo "********** Run Started **********"
