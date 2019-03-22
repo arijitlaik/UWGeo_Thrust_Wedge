@@ -32,7 +32,7 @@ GEO.scaling["[time]"] = Kt
 GEO.scaling["[mass]"] = KM
 
 Model = GEO.Model(
-    elementRes=(256, 128),
+    elementRes=(512, 256),
     minCoord=(0.0 * u.kilometer, -7 * u.kilometer),
     maxCoord=(128.0 * u.kilometer, 9.0 * u.kilometer),
     gravity=(0.0, -9.81 * u.meter / u.second ** 2),

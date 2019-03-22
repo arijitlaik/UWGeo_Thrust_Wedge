@@ -1,0 +1,14 @@
+*.xml
+*.xmf
+*.xdmf
+*.gldb
+*.ipynb_che*
+*.h5
+*.png
+*.log
+.DS_Store
+*.pyc
+*.json
+*.pkl
+*.out
+*.nfs*
