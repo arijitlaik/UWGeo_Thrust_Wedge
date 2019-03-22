@@ -212,7 +212,7 @@ def post_solve_hook():
 
 Model.postSolveHook = post_solve_hook
 # %%
-Model.run_for(0.2 * u.megayears, checkpoint_interval=0.1 * u.megayear, restartStep=None)
+Model.run_for(10 * u.megayears, checkpoint_interval=0.1 * u.megayear, restartStep=None)
 # %%
 
 # %%
