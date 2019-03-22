@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<badlands xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- Regular grid structure -->
+  <grid>
+    <!-- Optional parameter (integer) used to decrease TIN resolution.
+             The default value is set to 1. Increasing the factor
+             value will multiply the digital elevation model resolution
+             accordingly.  -->
+    <resfactor>1</resfactor>
+    <!-- Underworld flag.  -->
+    <udw>1</udw>
+  </grid>
+  <!-- Sea-level structure -->
+  <sea>
+    <!-- Relative sea-level position [m] -->
+    <position>-0.</position>
+  </sea>
+  <!-- Simulation time structure -->
+  <time>
+    <!-- Simulation start time [a] -->
+    <start>0.</start>
+    <!-- Simulation end time [a] -->
+    <end>200000000.</end>
+    <!-- Display interval [a] -->
+    <!-- This will be overridden by the linkage, so it doesn't matter -->
+    <display>1000000.</display>
+  </time>
+  <!-- Linear slope diffusion parameters:
+         Parameterisation of the sediment transport includes the simple creep transport
+         law which states that transport rate depends linearly on topographic gradient. -->
+  <creep>
+    <!-- Surface diffusion coefficient [m2/a] -->
+    <caerial>0.5</caerial>
+    <!-- Marine diffusion coefficient [m2/a] -->
+    <cmarine>0.5</cmarine>
+    <criver>0.5</criver>
+  </creep>
+  <!-- Output folder path -->
+  <outfolder>outbdls-t10</outfolder>
+</badlands>
