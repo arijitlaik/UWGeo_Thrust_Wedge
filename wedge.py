@@ -199,7 +199,7 @@ Model.surfaceProcesses = GEO.surfaceProcesses.Badlands(
     sedimentIndex=sediment.index,
     XML="ressources/badlandsT10.xml",
     resolution=500.0 * u.meter,
-    checkpoint_interval=0.1 * u.megayears,
+    checkpoint_interval=0.01 * u.megayears,
 )
 # %%
 
@@ -212,7 +212,7 @@ def post_solve_hook():
 
 Model.postSolveHook = post_solve_hook
 # %%
-Model.run_for(10 * u.megayears, checkpoint_interval=0.1e6 * u.year, restartStep=None)
+Model.run_for(10 * u.megayears, checkpoint_interval=0.01e6 * u.year, restartStep=None)
 # %%
 
 # %%
