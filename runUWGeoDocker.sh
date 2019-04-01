@@ -1,1 +1,1 @@
-docker run -it -v $PWD:/workspace/  underworldcode/uwgeodynamics:badlands /bin/bash
+docker run -it -v $PWD:/workspace/  arijitlaik/uwgeobadlands /bin/bash

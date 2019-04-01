@@ -27,18 +27,18 @@ KL = model_length
 Kt = KL / velocity
 KM = bodyforce * KL ** 2 * Kt ** 2
 
-GEO.scaling["[length]"] = KL
-GEO.scaling["[time]"] = Kt
-GEO.scaling["[mass]"] = KM
+GEO.scaling_coefficients["[length]"] = KL
+GEO.scaling_coefficients["[time]"] = Kt
+GEO.scaling_coefficients["[mass]"] = KM
 
 Model = GEO.Model(
-    elementRes=(1024, 256),
+    elementRes=(256, 64),
     minCoord=(0.0 * u.kilometer, -7 * u.kilometer),
     maxCoord=(128.0 * u.kilometer, 9.0 * u.kilometer),
     gravity=(0.0, -9.81 * u.meter / u.second ** 2),
 )
 # %%
-Model.outputDir = "outputs_tutorial10"
+Model.outputDir = "outputs_tutorial10_100_.25"
 # %% markdown
 # ### Material Setup
 #
@@ -198,8 +198,9 @@ Model.surfaceProcesses = GEO.surfaceProcesses.Badlands(
     airIndex=[air.index],
     sedimentIndex=sediment.index,
     XML="ressources/badlandsT10.xml",
-    resolution=100.0 * u.meter,
+    resolution=0.5 * (Model.maxCoord[0] - Model.minCoord[0]) / Model.elementRes[0],
     checkpoint_interval=0.01 * u.megayears,
+    aspectRatio2d=0.125,
 )
 # %%
 
