@@ -13,7 +13,7 @@ echo "********** XXXXXXXX **********"
 # ls -l
 export IMAGE_STORE='/home/alaik/singularityImages'
 export UW_ENABLE_TIMING='1'
-export IMAGE_NAME='uwgeobadlands-latest.simg'
+export IMAGE_NAME='uwgeobadlands-latest'
 
 
 echo "********** Run Started **********"
