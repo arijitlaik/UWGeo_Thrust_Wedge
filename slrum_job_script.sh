@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -p short
-#SBATCH --nodes=2
+#SBATCH --nodes=1
 # SBATCH --constraint=infiniband,avx2
 #SBATCH --tasks-per-node 12
 #SBATCH --time=00:05:00
@@ -13,7 +13,7 @@ echo "********** XXXXXXXX **********"
 # ls -l
 export IMAGE_STORE='/home/alaik/singularityImages'
 export UW_ENABLE_TIMING='1'
-export IMAGE_NAME='uwgeodynamics-badlands'
+export IMAGE_NAME='uwgeobadlands-latest.simg'
 
 
 echo "********** Run Started **********"
