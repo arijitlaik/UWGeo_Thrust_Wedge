@@ -12,7 +12,8 @@
 import underworld.function as fn
 import UWGeodynamics as GEO
 import numpy as np
-import glucifer
+
+# import glucifer
 
 # %% markdown
 # ### Model Scaling
@@ -38,7 +39,7 @@ Model = GEO.Model(
     gravity=(0.0, -9.81 * u.meter / u.second ** 2),
 )
 # %%
-Model.outputDir = "outputs_tutorial10_100_.25"
+Model.outputDir = "T10_uw"
 # %% markdown
 # ### Material Setup
 #
@@ -79,18 +80,19 @@ for index in range(NLayers):
     plastic_pile.append(material)
     layer_above = shape
 # %%
-colours = "tan #3A3A3A #00a8a8 " + 6 * "#425e6a salmon "
+# colours = "tan #3A3A3A #00a8a8 " + 6 * "#425e6a salmon "
 
-FigMat = glucifer.Figure(figsize=(1200, 250), quality=3)
-FigMat.Points(
-    Model.swarm,
-    Model.materialField,
-    discrete=True,
-    colours=colours,
-    fn_mask=Model.materialField > air.index,
-)
-FigMat.objects[0].colourBar["binlabels"] = True
-FigMat.show()
+# FigMat = glucifer.Figure(figsize=(1200, 250), quality=3)
+# FigMat.Points(
+#     Model.swarm,
+#     Model.materialField,
+#     discrete=True,
+#     colours=colours,
+#     fn_mask=Model.materialField > air.index,
+# )
+# FigMat.objects[0].colourBar["binlabels"] = True
+# FigMat.show()
+
 # %% markdown
 # ## Model (Global) properties
 # %%
@@ -120,20 +122,20 @@ sediment.viscosity = 1e22 * u.pascal * u.second
 # %%
 plastic_Law = GEO.DruckerPrager(
     cohesion=20.0 * u.megapascal,
-    cohesionAfterSoftening=4.0 * u.megapascal,
+    # cohesionAfterSoftening=4.0 * u.megapascal,
     frictionCoefficient=np.tan(np.radians(25.0)),
-    frictionAfterSoftening=np.tan(np.radians(20.0)),
-    epsilon1=0.01,
-    epsilon2=0.06,
+    # frictionAfterSoftening=np.tan(np.radians(20.0)),
+    # epsilon1=0.01,
+    # epsilon2=0.06,
 )
 
 sediment.plasticity = GEO.DruckerPrager(
     cohesion=10.0 * u.megapascal,
-    cohesionAfterSoftening=4.0 * u.megapascal,
+    # cohesionAfterSoftening=4.0 * u.megapascal,
     frictionCoefficient=np.tan(np.radians(20.0)),
-    frictionAfterSoftening=np.tan(np.radians(15.0)),
-    epsilon1=0.01,
-    epsilon2=0.06,
+    # frictionAfterSoftening=np.tan(np.radians(15.0)),
+    # epsilon1=0.01,
+    # epsilon2=0.03,
 )
 for material in plastic_pile:
     material.plasticity = plastic_Law
@@ -141,9 +143,9 @@ for material in plastic_pile:
 frictionalBasal.plasticity = GEO.DruckerPrager(
     cohesion=0.1 * u.megapascal,
     frictionCoefficient=np.tan(np.radians(12.0)),
-    frictionAfterSoftening=np.tan(np.radians(6.0)),
-    epsilon1=0.01,
-    epsilon2=0.06,
+    # frictionAfterSoftening=np.tan(np.radians(6.0)),
+    # epsilon1=0.01,
+    # epsilon2=0.0,
 )
 # %% markdown
 # ## Velocity Boundary Conditions
@@ -175,9 +177,9 @@ Model.set_velocityBCs(
     bottom=[-velocity, 0.0],
 )
 # %%
-Fig = glucifer.Figure(figsize=(1200, 250), quality=3)
-Fig.Surface(Model.mesh, fn.math.dot(Model.velocityField, Model.velocityField))
-Fig.show()
+# Fig = glucifer.Figure(figsize=(1200, 250), quality=3)
+# Fig.Surface(Model.mesh, fn.math.dot(Model.velocityField, Model.velocityField))
+# Fig.show()
 # %%
 Model.solver.set_inner_method("mumps")
 Model.solver.set_penalty(1e6)
@@ -186,36 +188,38 @@ GEO.rcParams["initial.nonlinear.tolerance"] = 1e-2
 # %%
 Model.init_model()
 # %%
-Fig = glucifer.Figure(figsize=(1200, 250), quality=3)
-Fig.Points(
-    Model.swarm,
-    GEO.Dimensionalize(Model.viscosityField, u.pascal * u.second),
-    logScale=True,
-)
-Fig.show()
+# Fig = glucifer.Figure(figsize=(1200, 250), quality=3)
+# Fig.Points(
+#     Model.swarm,
+#     GEO.Dimensionalize(Model.viscosityField, u.pascal * u.second),
+#     logScale=True,
+# )
+# Fig.show()
 # %%
+badRes = 0.7 * ((Model.maxCoord[0] - Model.minCoord[0]) / Model.elementRes[0])
 Model.surfaceProcesses = GEO.surfaceProcesses.Badlands(
     airIndex=[air.index],
     sedimentIndex=sediment.index,
     XML="ressources/badlandsT10.xml",
-    resolution=0.75 * (Model.maxCoord[0] - Model.minCoord[0]) / Model.elementRes[0],
-    checkpoint_interval=0.01 * u.megayears,
-    aspectRatio2d=0.1,
+    resolution=badRes,
+    checkpoint_interval=0.5 * u.megayears,
+    aspectRatio2d=0.02,
+    outputDir="T10_bl",
 )
 # %%
 
 
-def post_solve_hook():
-    global FigMat
-    if Model.step % 10 == 0:
-        FigMat.save("Material-{0}.png".format(Model.step))
-
-
-Model.postSolveHook = post_solve_hook
+# def post_solve_hook():
+#     global FigMat
+#     if Model.step % 10 == 0:
+#         FigMat.save("Material-{0}.png".format(Model.step))
+#
+#
+# Model.postSolveHook = post_solve_hook
 # %%
-Model.run_for(10 * u.megayears, checkpoint_interval=0.01e6 * u.year, restartStep=None)
+Model.run_for(12 * u.megayears, checkpoint_interval=0.5 * u.megayears, restartStep=None)
 # %%
 
 # %%
-air.index
+# air.index
 # %%
