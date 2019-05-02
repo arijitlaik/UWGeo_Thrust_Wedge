@@ -18,7 +18,7 @@ export IMAGE_NAME='uwgeobadlands-latest.simg'
 
 echo "********** Run Started **********"
 
-srun -n 24 singularity exec --pwd $PWD $IMAGE_STORE/$IMAGE_NAME.simg  python wedge.py
+srun -n 12 singularity exec --pwd $PWD $IMAGE_STORE/$IMAGE_NAME.simg  python wedge.py
 
 echo "********** XXXXXXXXXXX **********"
 

@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH -p normal
-#SBATCH --nodes=1
+#SBATCH --nodes=2
+#SBATCH --constraint=infiniband
 # SBATCH --constraint=infiniband,avx2
 #SBATCH --tasks-per-node 12
 #SBATCH --time=92:00:00
