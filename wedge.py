@@ -202,7 +202,7 @@ Model.surfaceProcesses = GEO.surfaceProcesses.Badlands(
     sedimentIndex=sediment.index,
     XML="ressources/badlandsT10.xml",
     resolution=badRes,
-    checkpoint_interval=0.5e6 * u.years,
+    checkpoint_interval=0.2e6 * u.years,
     aspectRatio2d=0.02,
     outputDir="T10_bl",
 )
@@ -217,7 +217,7 @@ Model.surfaceProcesses = GEO.surfaceProcesses.Badlands(
 #
 # Model.postSolveHook = post_solve_hook
 # %%
-Model.run_for(15 * u.megayears, checkpoint_interval=0.5e6 * u.years, restartStep=None)
+Model.run_for(15 * u.megayears, checkpoint_interval=0.2e6 * u.years, restartStep=None)
 # %%
 
 # %%
