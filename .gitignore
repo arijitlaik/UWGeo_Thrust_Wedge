@@ -1,5 +1,6 @@
 
 o*/*.xml
+T*/*.xml
 *.pvsm
 *.xmf
 *.xdmf

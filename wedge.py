@@ -33,9 +33,9 @@ GEO.scaling_coefficients["[time]"] = Kt
 GEO.scaling_coefficients["[mass]"] = KM
 
 Model = GEO.Model(
-    elementRes=(1024, 128),
+    elementRes=(1024, 192),
     minCoord=(0.0 * u.kilometer, -7 * u.kilometer),
-    maxCoord=(128.0 * u.kilometer, 9.0 * u.kilometer),
+    maxCoord=(128.0 * u.kilometer, 17.0 * u.kilometer),
     gravity=(0.0, -9.81 * u.meter / u.second ** 2),
 )
 # %%
@@ -202,7 +202,7 @@ Model.surfaceProcesses = GEO.surfaceProcesses.Badlands(
     sedimentIndex=sediment.index,
     XML="ressources/badlandsT10.xml",
     resolution=badRes,
-    checkpoint_interval=0.5 * u.megayears,
+    checkpoint_interval=0.5e6 * u.years,
     aspectRatio2d=0.02,
     outputDir="T10_bl",
 )
@@ -217,7 +217,7 @@ Model.surfaceProcesses = GEO.surfaceProcesses.Badlands(
 #
 # Model.postSolveHook = post_solve_hook
 # %%
-Model.run_for(12 * u.megayears, checkpoint_interval=0.5 * u.megayears, restartStep=None)
+Model.run_for(15 * u.megayears, checkpoint_interval=0.5e6 * u.years, restartStep=None)
 # %%
 
 # %%
